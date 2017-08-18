@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+<h2>@Model["stylist"].GetName()'s Clients</h2>
+
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+      <div class="well">
+        @foreach(var client in @Model["clients"])
+        {
+          <li><a href="/stylists/@client.GetStylistId()/@Model["stylist"].GetName()-clients/@client.GetId()">@client.GetName()</a></li>
+        }
+    </div>
+  </div>
+</div>
+
+<a href='/stylists/@Model["stylist"].GetId()/@Model["stylist"].GetName()-clients/form'><button>Add client for @Model["stylist"].GetName()</button></a>
+
+<a href='/stylists/@Model["stylist"].GetId()/@Model["stylist"].GetName()-clients/edit'><button>Update Stylist Name</button></a>
+
+<a href="/"><button>Home</button></a>

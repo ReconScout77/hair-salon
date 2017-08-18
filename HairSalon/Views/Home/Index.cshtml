@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Hair Salon Management Homepage</h1>
+
+<h2>Our Stylists</h2>
+
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+    <div class="well">
+      @foreach (var stylist in Model)
+      {
+        <li><a href="/stylists/@stylist.GetId()/@stylist.GetName()-clients">@stylist.GetName()</a></li>
+      }
+    </div>
+  </div>
+</div>
+
+<a href="/stylists/form"><button>Add Stylist</button></a>
