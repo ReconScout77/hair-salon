@@ -111,5 +111,75 @@ namespace HairSalon.Tests
 
       CollectionAssert.AreEqual(expectedClientList, resultClientList);
     }
+
+    [TestMethod]
+    public void UpdateStylistName_UpdatesStylistName_StylistName()
+    {
+      Stylist testStylist = new Stylist("Juan");
+      testStylist.Save();
+      string newStylist = "Juanathan";
+      testStylist.UpdateStylistName(newStylist);
+      string result = testStylist.GetName();
+      Assert.AreEqual(newStylist, result);
+    }
+
+    [TestMethod]
+    public void Delete_DeleteStylistNameFromDatabase_StylistList()
+    {
+      Stylist newStylist = new Stylist("Juan");
+      newStylist.Save();
+      Stylist newStylist2 = new Stylist("Lisa");
+      newStylist2.Save();
+
+      newStylist.DeleteStylist();
+      List<Stylist> allStylists = Stylist.GetAll();
+      List<Stylist> expectedList = new List<Stylist>{newStylist2};
+
+      CollectionAssert.AreEqual(allStylists, expectedList);
+    }
+
+    [TestMethod]
+    public void DeleteStylistClients_DeleteAllClientsForStylist_ClientList()
+    {
+      Stylist newStylist = new Stylist("Juan");
+      newStylist.Save();
+
+      Client firstClient = new Client("Tristan", newStylist.GetId());
+      firstClient.Save();
+      Client secondClient = new Client("Helga", newStylist.GetId());
+      secondClient.Save();
+
+      Stylist.DeleteStylistClients(newStylist.GetId());
+      List<Client> expected = new List<Client> {};
+      List<Client> result = newStylist.GetClients();
+
+      CollectionAssert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void Stylist_DeleteStylistAndAllRelatedClientsFromDatabase_ClientList()
+    {
+      Stylist newStylist = new Stylist("Juan");
+      newStylist.Save();
+      Stylist newStylist2 = new Stylist("Lisa");
+      newStylist2.Save();
+
+      Client firstClient = new Client("Tristan", newStylist.GetId());
+      firstClient.Save();
+      Client secondClient = new Client("Helga", newStylist.GetId());
+      secondClient.Save();
+      Client thirdClient = new Client("Kelsey", newStylist2.GetId());
+      thirdClient.Save();
+      Client fourthClient = new Client("Logan", newStylist2.GetId());
+      fourthClient.Save();
+
+      newStylist.DeleteStylist();
+      // List<Stylist> allStylists = Stylist.GetAll();
+      // List<Stylist> expectedList = new List<Stylist>{newStylist2};
+      List<Client> expected = new List<Client>{thirdClient, fourthClient};
+      List<Client> result = Client.GetAll();
+
+      CollectionAssert.AreEqual(expected, result);
+    }
   }
 }
