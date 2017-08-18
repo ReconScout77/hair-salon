@@ -31,7 +31,7 @@ _A website that stores the information of hair stylists and their clients._
 
 * _In MySQL:_
 
-**>** CREATE DATABASE hair_salon;
+  **>** CREATE DATABASE hair_salon;
 <br>
 **>** USE hair_salon;
 <br>
