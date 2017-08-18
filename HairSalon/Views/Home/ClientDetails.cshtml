@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+<h2>Client of @Model["stylist"].GetName():</h2>
+
+<h1>@Model["client"].GetName()</h1>
+
+<a href="/stylists/@Model["stylist"].GetId()/@Model["stylist"].GetName()-clients/@Model["client"].GetId()/edit"><button>Edit @Model["client"].GetName()</button></a>
+
+<a href="/stylists/@Model["stylist"].GetId()/@Model["stylist"].GetName()-clients/@Model["client"].GetId()/deleted"><button>Remove @Model["client"].GetName()</button></a>
+
+<a href="/stylists/@Model["stylist"].GetId()/@Model["stylist"].GetName()-clients"><button>Back to other clients of @Model["stylist"].GetName()</button></a>
+<a href="/"><button>Home</button></a>

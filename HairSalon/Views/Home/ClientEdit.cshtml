@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+<h2>Edit @Model["client"].GetName()</h2>
+
+<div class="row">
+  <div class="col-lg-6 col-lg-offset-3">
+    <div class="well">
+      <div class="form">
+        <form action="/stylists/@Model["stylist"].GetId()/@Model["stylist"].GetName()-clients/@Model["client"].GetId()/update" method="post">
+          <label for="client-name">Change client name to:</label>
+          <br>
+          <input type="text" name="client-name" id="client-name">
+          <br>
+          <button type="submit">Confirm change</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<a href="/stylists/@Model["stylist"].GetId()/@Model["stylist"].GetName()-clients"><button>Back to clients of @Model["stylist"].GetName()</button></a>
+<a href="/"><button>Home</button></a>
